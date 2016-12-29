@@ -1,0 +1,47 @@
+<html>
+<head>
+	<title>AngularJs Fundamentals</title>
+	<script src="js/libs/angular.min.js"></script>
+</head>
+<body ng-app="app">
+<div ng-controller="HomeController">
+<h1 ng-bind="title"></h1>
+
+
+<input type="text" ng-model="price"/>
+<input type="text" ng-model="quantity"/>
+<h1>{{price * quantity}}</h1>
+
+<ul>
+	<li ng-repeat="a in authors | orderBy:'name'">
+		{{a.name | lowercase}}
+	</li>
+</ul>
+
+<div>
+	<input type="text" ng-model="author"/>
+	<button type="submit" ng-click="addAuthor()">Add Author</button>
+</div>
+
+</div>
+
+
+<script>
+	var app=angular.module("app",[]);
+
+	app.controller("HomeController",function($scope){
+		$scope.price=0.0;
+		$scope.quantity=0;
+		$scope.authors=[{id:1,name:"Narayan Wagle"},{id:2,name:"Buddi Sagar"},{id:3,name:"Sanjeev Upreti"},{id:4,name:"Laxmi Prasad Devkota"}];
+
+		var i=4;
+		$scope.addAuthor=function(){
+			$scope.authors.push({id:i,name:$scope.author});
+			i++;
+		}
+
+	});
+
+</script>
+</body>
+</html>
